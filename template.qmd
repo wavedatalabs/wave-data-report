@@ -1,0 +1,101 @@
+---
+title: "Project Title"
+author:
+- name: Dean Marchiori
+  degrees: BSc(Math), MAppStat, AStat
+  email: dean@wavedatalabs.com.au
+phone: (+61) 400 000 000
+email: info@wavedatalabs.com.au
+organization: Client Pty Ltd
+bibliography: references.bib
+format: report-pdf
+---
+
+```{r setup, eval=TRUE, echo=FALSE, include=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(knitr)
+
+theme_set(theme_bw())
+```
+
+
+# Executive Summary
+
+Briefly summarize the main findings and recommendations from the statistical analysis.
+
+# Introduction
+
+Provide background information on the project, including the objectives, scope, and any relevant context.  
+
+In a famous paper, @BC64 introduced a family of transformations \dots
+
+```{r}
+#| label: fig-density
+#| fig-cap: Simulated data from a N(0,1) distribution.
+
+set.seed(2022-12-20)
+df <- tibble(x = rnorm(200))
+df |>
+  ggplot(aes(x=x)) +
+  geom_density(bw = "SJ") +
+  geom_rug()
+```
+
+@fig-density shows a kernel density estimate of simulated data from a N(0,1) distribution. The sample variance is given by
+$$
+  s^2 = \frac{1}{n-1} \sum_{i=1}^n (x_i-\bar{x})^2 = `r round(sd(df$x), 2)`.
+$$ {#eq-s2}
+Note that @eq-s2 is an unbiased estimate of the variance, but it is not the maximum likelihood estimate [@Rice2007, p.269].
+
+# Data Description
+
+Provide an overview of the dataset used for the analysis, including its source, size, and any preprocessing steps taken.
+
+```{r eval=FALSE, include=FALSE, echo=FALSE}
+
+make_data_dictionary <- function(data){
+  dd <- data.frame(names = names(data), 
+                   type = unlist(lapply(data, typeof), use.names = FALSE), 
+                   description = ".")
+  knitr::kable(dd)
+}
+```
+
+
+# Descriptive Statistics
+
+Present summary statistics and visualizations to describe the characteristics of the data.
+
+# Methodology
+
+Describe the statistical methods and techniques used for the analysis, including any assumptions made.
+
+# Modeling
+
+Detail any models developed for prediction or inference, including the model selection process and evaluation criteria.
+
+# Results
+
+Present the main findings of the analysis, including any significant relationships or patterns discovered.
+
+# Discussion
+
+Interpret the results in the context of the research objectives and relevant literature. Discuss any limitations of the analysis and potential areas for further investigation.
+
+# Recommendations
+
+Provide actionable recommendations based on the findings of the analysis.
+
+# Conclusion
+
+Summarize the key points of the report and emphasize the implications for decision-making.
+
+# Appendices
+
+Include any additional information, such as detailed tables, code snippets, or supplementary analyses.
+
+## Disclaimer 
+
+The findings and recommendations presented in this report are based on the analysis performed by Wave Data Labs Pty Ltd. While every effort has been made to ensure the accuracy and reliability of the information provided, we cannot guarantee its completeness or suitability for any particular purpose. Wave Data Labs Pty Ltd shall not be held liable for any damages, losses, or expenses arising from the use of this report or any decisions made based on its content. Users are advised to exercise their own judgment and seek further professional advice as necessary.
+
+
